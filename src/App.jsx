@@ -1,10 +1,14 @@
 import { useState, useRef, useEffect } from 'react'
 import macronGif from './assets/emmanuel-macron.gif'
+import loupiVideo from './assets/loupi.mp4'
+import mulanImg from './assets/mulan.jpg'
 import './index.css'
 
 function App() {
   const [showLetter, setShowLetter] = useState(false);
   const [showMeme, setShowMeme] = useState(false);
+  const [showMulan, setShowMulan] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
   const [algeriaAttempts, setAlgeriaAttempts] = useState(0);
   // Initial position is relative to sit nicely in the layout
   const [algeriaStyle, setAlgeriaStyle] = useState({});
@@ -62,8 +66,45 @@ function App() {
     });
   };
 
+
+
   if (showLetter) {
     if (showMeme) {
+       if (showMulan) {
+         return (
+          <div className="container" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center' }}>
+            <div className="letter-view model-view" style={{ textAlign: 'center' }}>
+                 <div style={{ display: 'flex', justifyContent: 'center', marginBottom: '30px', marginTop: '20px' }}>
+                    <img 
+                      src={mulanImg} 
+                      alt="Mulan" 
+                      style={{ 
+                        width: '300px', 
+                        height: '300px',
+                        borderRadius: '50%',
+                        objectFit: 'cover',
+                        boxShadow: '0 0 50px rgba(255, 77, 109, 0.8)', 
+                        border: '4px solid white'
+                      }}
+                    />
+                 </div>
+                 <button 
+                  className="primary-btn" 
+                  onClick={() => {
+                      setShowMulan(false);
+                      setShowMeme(false);
+                      setShowLetter(false);
+                      setAlgeriaAttempts(0);
+                  }}
+                  style={{ marginTop: '10px' }}
+                >
+                  Recommencer du début
+                </button>
+            </div>
+          </div>
+         )
+       }
+
        return (
         <div className="container" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center' }}>
             <div className="letter-view model-view" style={{ textAlign: 'center' }}>
@@ -76,10 +117,24 @@ function App() {
                     "Algérie ? Non, impossible.<br/>For sure."
                 </h1>
                 
+                <div style={{ margin: '30px 0', borderTop: '1px solid #eee', paddingTop: '20px' }}>
+                    <p style={{ marginBottom: '15px', color: '#888' }}>
+                         Allez, je suis gentil... celui-là il ne bouge pas, promis ! 👇
+                    </p>
+                    <button 
+                      className="flag-btn"
+                      onClick={() => setShowMulan(true)}
+                      style={{ margin: '0 auto', border: '2px solid #495057' }}
+                    >
+                      <img src="https://flagcdn.com/w160/dz.png" alt="Algérie" />
+                      <span>Algérie 🇩🇿</span>
+                    </button>
+                </div>
+
                 <button 
                   className="primary-btn" 
                   onClick={() => setShowMeme(false)}
-                  style={{ marginTop: '30px', background: '#adb5bd' }}
+                  style={{ marginTop: '20px', background: '#adb5bd' }}
                 >
                   Retour à la lettre
                 </button>
@@ -91,57 +146,78 @@ function App() {
     return (
       <div className="container">
         <div className="letter-view model-view">
-            <h1 className="title">💌 Pour Manel 💌</h1>
-            <div className="letter-content" style={{ fontSize: '1.2rem' }}>
-            <p>
-                <strong>Joyeuse Saint Valentin Manel ! 🌹</strong>
-            </p>
-            <p>
-                C'est une petite blague bien sûr... je savais que tu essaierais d'attraper le bouton Algérie, mais il est programmé pour être plus rapide que l'éclair ! 🏃💨 J'espère que cette petite course-poursuite t'a fait sourire.
-            </p>
-            <p>
-                Plus sérieusement, je profite de cette occasion pour te souhaiter une excellente journée. C'est toujours un plaisir de travailler avec toi, ta bonne humeur et ton professionnalisme sont précieux pour l'équipe.
-            </p>
-            
-            <div style={{ borderTop: '2px dashed #ffb6c1', paddingTop: '20px', marginTop: '30px', marginBottom: '40px' }}>
-                <h2 style={{ color: '#845ef7', marginBottom: '15px' }}>
-                🌙 Ramadan Moubarak en avance ! 🌙
-                </h2>
-                <p style={{ fontStyle: 'italic', color: '#555' }}>
-                Comme le mois sacré approche à grands pas, je tenais aussi à te souhaiter, ainsi qu'à tous tes proches, un très bon Ramadan.
+            {isLoading ? (
+                <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', padding: '50px 0' }}>
+                     <video 
+                      src={loupiVideo} 
+                      autoPlay 
+                      playsInline
+                      muted 
+                      style={{ 
+                        width: '300px', 
+                        height: '300px',
+                        borderRadius: '50%',
+                        objectFit: 'cover',
+                        boxShadow: '0 0 50px rgba(255, 77, 109, 0.8)', 
+                        border: '4px solid white'
+                      }}
+                    />
+                </div>
+            ) : (
+                <>
+                <h1 className="title">💌 Pour Manel 💌</h1>
+                <div className="letter-content" style={{ fontSize: '1.2rem' }}>
+                <p>
+                    <strong>Joyeuse Saint Valentin Manel ! 🌹</strong>
                 </p>
-            </div>
+                <p>
+                    C'est une petite blague bien sûr... je savais que tu essaierais d'attraper le bouton Algérie, mais il est programmé pour être plus rapide que l'éclair ! 🏃💨 J'espère que cette petite course-poursuite t'a fait sourire.
+                </p>
+                <p>
+                    Plus sérieusement, je profite de cette occasion pour te souhaiter une excellente journée. C'est toujours un plaisir de travailler avec toi, ta bonne humeur et ton professionnalisme sont précieux pour l'équipe.
+                </p>
+                
+                <div style={{ borderTop: '2px dashed #ffb6c1', paddingTop: '20px', marginTop: '30px', marginBottom: '40px' }}>
+                    <h2 style={{ color: '#845ef7', marginBottom: '15px' }}>
+                    🌙 Ramadan Moubarak en avance ! 🌙
+                    </h2>
+                    <p style={{ fontStyle: 'italic', color: '#555' }}>
+                    Comme le mois sacré approche à grands pas, je tenais aussi à te souhaiter, ainsi qu'à tous tes proches, un très bon Ramadan.
+                    </p>
+                </div>
 
-            <div style={{ margin: '30px 0', textAlign: 'center' }}>
-                  <button 
-                    onClick={() => setShowMeme(true)}
-                    style={{
-                      background: '#f8f9fa',
-                      border: '1px solid #ced4da',
-                      padding: '12px 25px',
-                      borderRadius: '30px',
-                      cursor: 'pointer',
-                      fontSize: '1.1rem',
-                      fontWeight: 'bold',
-                      color: '#495057',
-                      boxShadow: '0 4px 10px rgba(0,0,0,0.1)',
-                      transition: 'transform 0.2s',
-                    }}
-                    onMouseEnter={(e) => e.target.style.transform = 'scale(1.05)'}
-                    onMouseLeave={(e) => e.target.style.transform = 'scale(1)'}
-                  >
-                    Une dernière surprise... ? 👁️
-                  </button>
-            </div>
+                <div style={{ margin: '30px 0', textAlign: 'center' }}>
+                      <button 
+                        onClick={() => setShowMeme(true)}
+                        style={{
+                          background: '#f8f9fa',
+                          border: '1px solid #ced4da',
+                          padding: '12px 25px',
+                          borderRadius: '30px',
+                          cursor: 'pointer',
+                          fontSize: '1.1rem',
+                          fontWeight: 'bold',
+                          color: '#495057',
+                          boxShadow: '0 4px 10px rgba(0,0,0,0.1)',
+                          transition: 'transform 0.2s',
+                        }}
+                        onMouseEnter={(e) => e.target.style.transform = 'scale(1.05)'}
+                        onMouseLeave={(e) => e.target.style.transform = 'scale(1)'}
+                      >
+                        Une dernière surprise... ? 👁️
+                      </button>
+                </div>
 
-            </div>
-            <button className="primary-btn" onClick={() => {
-              setShowLetter(false);
-              setAlgeriaAttempts(0);
-              setShowMeme(false);
-            }}>
-            Retour au jeu
-            </button>
+                </div>
+                <button className="primary-btn" onClick={() => {
+                  setShowLetter(false);
+                  setAlgeriaAttempts(0);
+                  setShowMeme(false);
+                }}>
+                Retour au jeu
+                </button>
+                </>
+            )}
         </div>
       </div>
     );
@@ -162,7 +238,13 @@ function App() {
         }}>
             <button 
             className="flag-btn"
-            onClick={() => setShowLetter(true)}
+            onClick={() => {
+              setShowLetter(true);
+              setIsLoading(true);
+              setTimeout(() => {
+                setIsLoading(false);
+              }, 2000);
+            }}
             >
             <img src="https://flagcdn.com/w160/ma.png" alt="Maroc" />
             <span>Maroc 🇲🇦</span>
