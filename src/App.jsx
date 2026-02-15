@@ -91,10 +91,10 @@ function App() {
     return (
       <div className="container">
         <div className="letter-view model-view">
-            <h1 className="title">💌 Pour Amel 💌</h1>
+            <h1 className="title">💌 Pour Manel 💌</h1>
             <div className="letter-content" style={{ fontSize: '1.2rem' }}>
             <p>
-                <strong>Joyeuse Saint Valentin Amel ! 🌹</strong>
+                <strong>Joyeuse Saint Valentin Manel ! 🌹</strong>
             </p>
             <p>
                 C'est une petite blague bien sûr... je savais que tu essaierais d'attraper le bouton Algérie, mais il est programmé pour être plus rapide que l'éclair ! 🏃💨 J'espère que cette petite course-poursuite t'a fait sourire.
