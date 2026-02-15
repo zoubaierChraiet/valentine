@@ -135,7 +135,11 @@ function App() {
             </div>
 
             </div>
-            <button className="primary-btn" onClick={() => setShowLetter(false)}>
+            <button className="primary-btn" onClick={() => {
+              setShowLetter(false);
+              setAlgeriaAttempts(0);
+              setShowMeme(false);
+            }}>
             Retour au jeu
             </button>
         </div>
