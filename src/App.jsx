@@ -69,39 +69,11 @@ function App() {
 
 
   if (showLetter) {
-    if (showMeme) {
-
-
-       return (
-        <div className="container" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center' }}>
-            <div className="letter-view model-view" style={{ textAlign: 'center' }}>
-                <img 
-                    src={macronGif} 
-                    alt="Macron For Sure" 
-                    style={{ borderRadius: '15px', boxShadow: '0 10px 20px rgba(0,0,0,0.3)', maxWidth: '100%', width: '500px', height: 'auto', display: 'block', margin: '0 auto' }}
-                />
-                <h1 style={{ fontSize: '2.5rem', marginTop: '20px', color: '#333' }}>
-                    "Algérie ? Non, impossible.<br/>For sure."
-                </h1>
-                
-
-
-                <button 
-                  className="primary-btn" 
-                  onClick={() => setShowMeme(false)}
-                  style={{ marginTop: '20px', background: '#adb5bd' }}
-                >
-                  Retour à la lettre
-                </button>
-            </div>
-        </div>
-       )
-    }
-
-    return (
-      <div className="container">
-        <div className="letter-view model-view">
-            {isLoading ? (
+    // Unified Loading View
+    if (isLoading) {
+      return (
+        <div className="container">
+          <div className="letter-view model-view">
                 <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', padding: '50px 0' }}>
                      <video 
                       src={loupiVideo} 
@@ -118,8 +90,39 @@ function App() {
                       }}
                     />
                 </div>
-            ) : (
-                <>
+          </div>
+        </div>
+      );
+    }
+
+    if (showMeme) {
+       return (
+        <div className="container" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center' }}>
+            <div className="letter-view model-view" style={{ textAlign: 'center' }}>
+                <img 
+                    src={macronGif} 
+                    alt="Macron For Sure" 
+                    style={{ borderRadius: '15px', boxShadow: '0 10px 20px rgba(0,0,0,0.3)', maxWidth: '100%', width: '500px', height: 'auto', display: 'block', margin: '0 auto' }}
+                />
+                <h1 style={{ fontSize: '2.5rem', marginTop: '20px', color: '#333' }}>
+                    "Algérie ? Non, impossible.<br/>For sure."
+                </h1>
+                
+                <button 
+                  className="primary-btn" 
+                  onClick={() => setShowMeme(false)}
+                  style={{ marginTop: '20px', background: '#adb5bd' }}
+                >
+                  Retour à la lettre
+                </button>
+            </div>
+        </div>
+       )
+    }
+
+    return (
+      <div className="container">
+        <div className="letter-view model-view">
                 <h1 className="title">💌 Pour Manel 💌</h1>
                 <div className="letter-content" style={{ fontSize: '1.2rem' }}>
                 <p>
@@ -176,7 +179,13 @@ function App() {
                 <div style={{ margin: '30px 0', textAlign: 'center', display: 'flex', justifyContent: 'center' }}>
                       <button 
                         className="flag-btn"
-                        onClick={() => setShowMeme(true)}
+                        onClick={() => {
+                          setIsLoading(true);
+                          setTimeout(() => {
+                             setIsLoading(false);
+                             setShowMeme(true);
+                          }, 2000);
+                        }}
                         style={{
                           border: '2px solid #fff',
                           animation: 'pulse 2s infinite' // Optional visual cue
@@ -195,8 +204,7 @@ function App() {
                 }}>
                 Retour au jeu
                 </button>
-                </>
-            )}
+
         </div>
       </div>
     );
