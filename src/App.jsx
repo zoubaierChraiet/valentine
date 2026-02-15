@@ -7,7 +7,7 @@ import './index.css'
 function App() {
   const [showLetter, setShowLetter] = useState(false);
   const [showMeme, setShowMeme] = useState(false);
-  const [showMulan, setShowMulan] = useState(false);
+
   const [isLoading, setIsLoading] = useState(false);
   const [algeriaAttempts, setAlgeriaAttempts] = useState(0);
   // Initial position is relative to sit nicely in the layout
@@ -70,40 +70,7 @@ function App() {
 
   if (showLetter) {
     if (showMeme) {
-       if (showMulan) {
-         return (
-          <div className="container" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center' }}>
-            <div className="letter-view model-view" style={{ textAlign: 'center' }}>
-                 <div style={{ display: 'flex', justifyContent: 'center', marginBottom: '30px', marginTop: '20px' }}>
-                    <img 
-                      src={mulanImg} 
-                      alt="Mulan" 
-                      style={{ 
-                        width: '300px', 
-                        height: '300px',
-                        borderRadius: '50%',
-                        objectFit: 'cover',
-                        boxShadow: '0 0 50px rgba(255, 77, 109, 0.8)', 
-                        border: '4px solid white'
-                      }}
-                    />
-                 </div>
-                 <button 
-                  className="primary-btn" 
-                  onClick={() => {
-                      setShowMulan(false);
-                      setShowMeme(false);
-                      setShowLetter(false);
-                      setAlgeriaAttempts(0);
-                  }}
-                  style={{ marginTop: '10px' }}
-                >
-                  Recommencer du début
-                </button>
-            </div>
-          </div>
-         )
-       }
+
 
        return (
         <div className="container" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center' }}>
@@ -117,19 +84,7 @@ function App() {
                     "Algérie ? Non, impossible.<br/>For sure."
                 </h1>
                 
-                <div style={{ margin: '30px 0', borderTop: '1px solid #eee', paddingTop: '20px' }}>
-                    <p style={{ marginBottom: '15px', color: '#888' }}>
-                         Allez, je suis gentil... celui-là il ne bouge pas, promis ! 👇
-                    </p>
-                    <button 
-                      className="flag-btn"
-                      onClick={() => setShowMulan(true)}
-                      style={{ margin: '0 auto', border: '2px solid #495057' }}
-                    >
-                      <img src="https://flagcdn.com/w160/dz.png" alt="Algérie" />
-                      <span>Algérie 🇩🇿</span>
-                    </button>
-                </div>
+
 
                 <button 
                   className="primary-btn" 
@@ -177,34 +132,58 @@ function App() {
                     Plus sérieusement, je profite de cette occasion pour te souhaiter une excellente journée. C'est toujours un plaisir de travailler avec toi, ta bonne humeur et ton professionnalisme sont précieux pour l'équipe.
                 </p>
                 
-                <div style={{ borderTop: '2px dashed #ffb6c1', paddingTop: '20px', marginTop: '30px', marginBottom: '40px' }}>
-                    <h2 style={{ color: '#845ef7', marginBottom: '15px' }}>
-                    🌙 Ramadan Moubarak en avance ! 🌙
+                <div style={{ 
+                    borderTop: '2px dashed #ffb6c1', 
+                    paddingTop: '20px', 
+                    marginTop: '30px', 
+                    marginBottom: '40px',
+                    textAlign: 'center'
+                }}>
+                    <h2 style={{ 
+                        color: '#845ef7', 
+                        marginBottom: '10px',
+                        fontSize: '2rem',
+                        textShadow: '1px 1px 2px rgba(0,0,0,0.1)'
+                    }}>
+                    🌙 Ramadan
                     </h2>
-                    <p style={{ fontStyle: 'italic', color: '#555' }}>
-                    Comme le mois sacré approche à grands pas, je tenais aussi à te souhaiter, ainsi qu'à tous tes proches, un très bon Ramadan.
-                    </p>
+                    
+                    <div style={{ display: 'flex', justifyContent: 'center', margin: '10px 0' }}>
+                        <img 
+                          src={mulanImg} 
+                          alt="Mulan" 
+                          style={{ 
+                            width: '250px', 
+                            height: '250px',
+                            borderRadius: '50%',
+                            objectFit: 'cover',
+                            boxShadow: '0 0 30px rgba(132, 94, 247, 0.5)', 
+                            border: '4px solid white'
+                          }}
+                        />
+                    </div>
+
+                    <h2 style={{ 
+                        color: '#845ef7', 
+                        marginTop: '10px',
+                        fontSize: '2rem',
+                        textShadow: '1px 1px 2px rgba(0,0,0,0.1)'
+                    }}>
+                    Moubarak ! 🌙
+                    </h2>
                 </div>
 
-                <div style={{ margin: '30px 0', textAlign: 'center' }}>
+                <div style={{ margin: '30px 0', textAlign: 'center', display: 'flex', justifyContent: 'center' }}>
                       <button 
+                        className="flag-btn"
                         onClick={() => setShowMeme(true)}
                         style={{
-                          background: '#f8f9fa',
-                          border: '1px solid #ced4da',
-                          padding: '12px 25px',
-                          borderRadius: '30px',
-                          cursor: 'pointer',
-                          fontSize: '1.1rem',
-                          fontWeight: 'bold',
-                          color: '#495057',
-                          boxShadow: '0 4px 10px rgba(0,0,0,0.1)',
-                          transition: 'transform 0.2s',
+                          border: '2px solid #fff',
+                          animation: 'pulse 2s infinite' // Optional visual cue
                         }}
-                        onMouseEnter={(e) => e.target.style.transform = 'scale(1.05)'}
-                        onMouseLeave={(e) => e.target.style.transform = 'scale(1)'}
                       >
-                        Une dernière surprise... ? 👁️
+                        <img src="https://flagcdn.com/w160/dz.png" alt="Algérie" />
+                        <span>Algérie 🇩🇿</span>
                       </button>
                 </div>
 
